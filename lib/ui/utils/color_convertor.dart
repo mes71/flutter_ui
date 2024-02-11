@@ -30,3 +30,9 @@ MaterialColor hexToMaterialColor(String hexColor) {
     },
   );
 }
+
+Color hexTolColor(String hexColor) {
+  var materialColor = hexToMaterialColor(hexColor);
+
+  return materialColor.shade900;
+}
