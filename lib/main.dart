@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/ui/screen/nike_product_card/nike_product_card.dart';
+import 'package:flutter_ui/ui/screen/procdut_card_01/product_card_01.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'ui/screen/my_app.dart';
@@ -21,10 +22,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade400),
         useMaterial3: true,
       ),
-      initialRoute: NikeProductCard.tag,
+      initialRoute: ProductCard01.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
-        MyApps.tag :(context) => MyApps()
+        MyApps.tag: (context) => MyApps(),
+        ProductCard01.tag: (context) => const ProductCard01()
       },
     );
   }
