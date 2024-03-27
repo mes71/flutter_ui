@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/presentation/style/assets.dart';
-import 'package:flutter_ui/ui/utils/color_convertor.dart';
+import 'package:flutter_ui/screen/product_card_01/liner_painter.dart';
+import 'package:flutter_ui/utils/assets.dart';
+import 'package:flutter_ui/utils/color_convertor.dart';
 
 class ProductCard01 extends StatefulWidget {
   const ProductCard01({super.key});
@@ -17,32 +18,30 @@ class _ProductCard01State extends State<ProductCard01>
   late Animation<double> _horizontalAnimation;
   late Animation<double> _verticalAnimation;
   late Animation<double> _textAnimation;
+  late Animation<double> _scaleAnimation;
+  late Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 700),
       vsync: this,
-    );
+    )..addListener(() {
+        setState(() {});
+      });
 
     _horizontalAnimation =
         Tween<double>(begin: 0, end: 250).animate(CurvedAnimation(
       parent: _controller,
       curve: const Interval(0, 0.5, curve: Curves.easeInOut),
-    ))
-          ..addListener(() {
-            setState(() {});
-          });
+    ));
 
     _verticalAnimation =
         Tween<double>(begin: 0, end: 100).animate(CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.5, 1.0, curve: Curves.easeInOut),
-    ))
-          ..addListener(() {
-            setState(() {});
-          });
+    ));
 
     _textAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -50,6 +49,34 @@ class _ProductCard01State extends State<ProductCard01>
         curve: const Interval(0.5, 1.0, curve: Curves.easeInOut),
       ),
     );
+
+    _scaleAnimation = Tween<double>(
+      begin: 2,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: Offset(-1.5, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  void _handleTap() {
+    if (_controller.isCompleted) {
+      _controller.reverse();
+    } else {
+      _controller.forward();
+    }
   }
 
   @override
@@ -60,7 +87,7 @@ class _ProductCard01State extends State<ProductCard01>
         alignment: Alignment.center,
         children: [
           Positioned(
-            bottom: -78,
+            bottom: 10,
             left: 80,
             child: Center(
               child: CustomPaint(
@@ -75,16 +102,27 @@ class _ProductCard01State extends State<ProductCard01>
           ),
           Positioned(
             left: 0,
+            right: 0,
             child: Center(
               child: GestureDetector(
-                onTap: () {
-                  if (_controller.isCompleted) {
-                    _controller.reverse();
-                  } else {
-                    _controller.forward();
-                  }
-                },
-                child: Image.asset(Assets.imagesPorganic01, width: 150),
+                onTap: _handleTap,
+                child: AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return Transform.scale(
+                      scale: _scaleAnimation.value,
+                      child: Align(
+                        alignment: Alignment(_slideAnimation.value.dx, 0),
+                        child: Image.asset(
+                          Assets.imagesPorganic01,
+                          // Replace this with your image URL
+                          width: 210,
+                          height: 210,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ),
@@ -126,33 +164,4 @@ class _ProductCard01State extends State<ProductCard01>
     _controller.dispose();
     super.dispose();
   }
-}
-
-class LinePainter extends CustomPainter {
-  double horizontalAnimation;
-  double verticalAnimation;
-
-  LinePainter(this.horizontalAnimation, this.verticalAnimation);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint = Paint()
-      ..color = Colors.red
-      ..strokeWidth = 2
-      ..strokeCap = StrokeCap.round;
-
-    canvas.drawLine(
-      const Offset(0, 0),
-      Offset(horizontalAnimation, 0),
-      paint,
-    ); // horizontal line
-    canvas.drawLine(
-      Offset(horizontalAnimation, 0),
-      Offset(horizontalAnimation, verticalAnimation),
-      paint,
-    ); // vertical line
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

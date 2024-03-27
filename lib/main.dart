@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/ui/screen/nike_product_card/nike_product_card.dart';
-import 'package:flutter_ui/ui/screen/procdut_card_01/product_card_01.dart';
+import 'package:flutter_ui/screen/screen.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'ui/screen/my_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +22,6 @@ class MyApp extends StatelessWidget {
       initialRoute: ProductCard01.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
-        MyApps.tag: (context) => MyApps(),
         ProductCard01.tag: (context) => const ProductCard01()
       },
     );
