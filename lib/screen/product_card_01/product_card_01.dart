@@ -87,15 +87,18 @@ class _ProductCard01State extends State<ProductCard01>
         alignment: Alignment.center,
         children: [
           Positioned(
-            bottom: 10,
+            bottom: -70,
             left: 80,
             child: Center(
-              child: CustomPaint(
-                painter: LinePainter(
-                    _horizontalAnimation.value, _verticalAnimation.value),
-                child: const SizedBox(
-                  width: 360, // Set width and height for the CustomPaint
-                  height: 500,
+              child: Visibility(
+                visible: _horizontalAnimation.value !=0,
+                child: CustomPaint(
+                  painter: LinePainter(
+                      _horizontalAnimation.value, _verticalAnimation.value),
+                  child: const SizedBox(
+                    width: 360, // Set width and height for the CustomPaint
+                    height: 500,
+                  ),
                 ),
               ),
             ),

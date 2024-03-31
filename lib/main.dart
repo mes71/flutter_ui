@@ -3,6 +3,7 @@ import 'package:flutter_ui/screen/screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -14,12 +15,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter UI',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.lato().fontFamily,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade400),
         useMaterial3: true,
       ),
-      initialRoute: ProductCard01.tag,
+      initialRoute: NikeProductCard.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
         ProductCard01.tag: (context) => const ProductCard01()

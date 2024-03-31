@@ -53,6 +53,7 @@ class _NikeProductCardState extends State<NikeProductCard>
         child: Container(
           width: 500,
           height: 450,
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: Colors.grey[850],
             borderRadius: BorderRadius.circular(18),
@@ -78,6 +79,7 @@ class _NikeProductCardState extends State<NikeProductCard>
                         builder: (context, child) {
                           return Transform.scale(
                             scale: _animation.value,
+                            filterQuality: FilterQuality.high,
                             child: Container(
                               width: 293,
                               height: targetSize,
