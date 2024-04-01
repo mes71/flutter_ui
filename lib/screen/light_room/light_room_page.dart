@@ -58,7 +58,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                             shadows: [
                               BoxShadow(
                                 color: Color.fromRGBO(245, 245, 221, intensity),
-                                blurRadius: 150,
+                                blurRadius: 200,
                                 blurStyle: BlurStyle.normal,
                                 offset: const Offset(10,-10)
 
@@ -96,6 +96,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                       opacity: _fadeAnimation,
                       child: SvgPicture.asset(
                         Assets.iconsLight,
+
                       ),
                     ),
                   ),
