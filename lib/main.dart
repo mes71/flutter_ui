@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/screen/light_room/light_room_page.dart';
 import 'package:flutter_ui/screen/screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -15,16 +15,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter UI',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       theme: ThemeData(
         fontFamily: GoogleFonts.lato().fontFamily,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade400),
         useMaterial3: true,
       ),
-      initialRoute: NikeProductCard.tag,
+      initialRoute: LightRoomPage.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
-        ProductCard01.tag: (context) => const ProductCard01()
+        ProductCard01.tag: (context) => const ProductCard01(),
+        LightRoomPage.tag: (context) => const LightRoomPage()
       },
     );
   }
