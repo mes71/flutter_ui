@@ -60,20 +60,20 @@ class _LightRoomPageState extends State<LightRoomPage>
                                 color: Color.fromRGBO(245, 245, 221, intensity),
                                 blurRadius: 150,
                                 blurStyle: BlurStyle.normal,
-                                offset: Offset(10,-10)
+                                offset: const Offset(10,-10)
 
 
                               )
                             ],
 
                         ):ShapeDecoration(
-                          shape: OvalBorder(),
+                          shape: const OvalBorder(),
                           shadows: [
                             BoxShadow(
                                 color:Colors.black.withOpacity(0.35),
                                 blurRadius: 150,
                                 blurStyle: BlurStyle.normal,
-                                offset: Offset(10,-10)
+                                offset: const Offset(10,-10)
 
 
                             )
@@ -116,7 +116,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                         color: Colors.white,
                         fontSize: 18,
                         fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w300,
                         height: 0,
                       ),
                     ),
@@ -158,7 +158,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w300,
                                 height: 0,
                               ),
                             ),
