@@ -51,14 +51,15 @@ class _LightRoomPageState extends State<LightRoomPage>
                       top: 165,
                       right: 10,
                       child: Container(
-                        width: 282,
-                        height: 282,
+                        width: 300,
+                        height: 300,
                         decoration: lightIsOn?ShapeDecoration(
                             shape: const OvalBorder(),
                             shadows: [
                               BoxShadow(
                                 color: Color.fromRGBO(245, 245, 221, intensity),
-                                blurRadius: 200,
+                                blurRadius: 150,
+                                spreadRadius: 70,
                                 blurStyle: BlurStyle.normal,
                                 offset: const Offset(10,-10)
 
@@ -70,8 +71,9 @@ class _LightRoomPageState extends State<LightRoomPage>
                           shape: const OvalBorder(),
                           shadows: [
                             BoxShadow(
-                                color:Colors.black.withOpacity(0.35),
+                                color:Colors.black.withOpacity(0.7),
                                 blurRadius: 150,
+                                spreadRadius: 80,
                                 blurStyle: BlurStyle.normal,
                                 offset: const Offset(10,-10)
 
