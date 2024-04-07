@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
         ProductCard01.tag: (context) => const ProductCard01(),
-        LightRoomPage.tag: (context) => const LightRoomPage()
+        LightRoomPage.tag: (context) => const LightRoomPage(),
+        ProductCard02.tag : (context) => const ProductCard02(),
+
       },
     );
   }
