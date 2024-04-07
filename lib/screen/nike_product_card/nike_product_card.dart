@@ -58,170 +58,173 @@ class _NikeProductCardState extends State<NikeProductCard>
             color: Colors.grey[850],
             borderRadius: BorderRadius.circular(18),
           ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Positioned(
-                  top: -50,
-                  right: -50,
-                  child: GestureDetector(
-                    onTap: (){
-                      setState(() {
-                        if (_controller.status == AnimationStatus.completed) {
-                          _controller.reverse();
-                        } else {
-                          _controller.forward();
-                        }
-                      });
-                    },
-                    child: AnimatedBuilder(
-                        animation: _animation,
-                        builder: (context, child) {
-                          return Transform.scale(
-                            scale: _animation.value,
-                            filterQuality: FilterQuality.high,
-                            child: Container(
-                              width: 293,
-                              height: targetSize,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(1500),
-                                  color: const Color(0xFF9bdc28)),
-                            ),
-                          );
-                        }),
-                  )),
-              GestureDetector(
-                onTap: (){
-                  setState(() {
-                    if (_controller.status == AnimationStatus.completed) {
-                      _controller.reverse();
-                    } else {
-                      _controller.forward();
-                    }
-                  });
-                },
-                child: AnimatedBuilder(
-                  animation: _shoseAnimation,
-                  builder: (context, child) => Transform.translate(
-                    offset: _shoseAnimation.value,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(18),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                    top: -50,
+                    right: -50,
+                    child: GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          if (_controller.status == AnimationStatus.completed) {
+                            _controller.reverse();
+                          } else {
+                            _controller.forward();
+                          }
+                        });
+                      },
+                      child: AnimatedBuilder(
+                          animation: _animation,
+                          builder: (context, child) {
+                            return Transform.scale(
+                              scale: _animation.value,
+                              filterQuality: FilterQuality.high,
+                              child: Container(
+                                width: 293,
+                                height: targetSize,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(1500),
+                                    color: const Color(0xFF9bdc28)),
+                              ),
+                            );
+                          }),
+                    )),
+                GestureDetector(
+                  onTap: (){
+                    setState(() {
+                      if (_controller.status == AnimationStatus.completed) {
+                        _controller.reverse();
+                      } else {
+                        _controller.forward();
+                      }
+                    });
+                  },
+                  child: AnimatedBuilder(
+                    animation: _shoseAnimation,
+                    builder: (context, child) => Transform.translate(
+                      offset: _shoseAnimation.value,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30),
+                            child: Transform.rotate(
+                                angle: -pi / 8,
+                                child: Image.asset(
+                                  'assets/images/nikle_shoes.webp',
+                                )),
+                          ),
+                          const SizedBox(
+                            height: 80,
+                          ),
+                          Text(
+                            "Nike Shoes",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(color: Colors.white),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 15,
+                  child: FadeTransition(
+                    opacity: textAnimation,
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 30),
-                          child: Transform.rotate(
-                              angle: -pi / 8,
-                              child: Image.asset(
-                                'assets/images/nikle_shoes.webp',
-                              )),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Size : ',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: Colors.white),
+                            ),
+                            const SizedBox(width: 25),
+                            SizedBox(
+                              width: 150,
+                              height: 30,
+                              child: ListView.separated(
+                                itemCount: sizeList.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) => Container(
+                                  width: 30,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: Center(
+                                    child: Text(sizeList[index].toString()),
+                                  ),
+                                ),
+                                separatorBuilder:
+                                    (BuildContext context, int index) =>
+                                        const SizedBox(width: 8),
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Text(
+                              'Colors : ',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: Colors.white),
+                            ),
+                            const SizedBox(width: 25),
+                            SizedBox(
+                              width: 150,
+                              height: 20,
+                              child: ListView.separated(
+                                itemCount: colorsList.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) => Container(
+                                  width: 20,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: colorsList[index],
+                                    borderRadius: BorderRadius.circular(10),
+
+                                  ),
+                                ),
+                                separatorBuilder:
+                                    (BuildContext context, int index) =>
+                                        const SizedBox(
+                                  width: 15,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                         const SizedBox(
-                          height: 80,
+                          height: 12,
                         ),
-                        Text(
-                          "Nike Shoes",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(color: Colors.white),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: const Text('Buy Now'),
                         )
                       ],
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                bottom: 15,
-                child: FadeTransition(
-                  opacity: textAnimation,
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Size : ',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(color: Colors.white),
-                          ),
-                          const SizedBox(width: 25),
-                          SizedBox(
-                            width: 150,
-                            height: 30,
-                            child: ListView.separated(
-                              itemCount: sizeList.length,
-                              physics: const NeverScrollableScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) => Container(
-                                width: 30,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Center(
-                                  child: Text(sizeList[index].toString()),
-                                ),
-                              ),
-                              separatorBuilder:
-                                  (BuildContext context, int index) =>
-                                      const SizedBox(width: 8),
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Text(
-                            'Colors : ',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(color: Colors.white),
-                          ),
-                          const SizedBox(width: 25),
-                          SizedBox(
-                            width: 150,
-                            height: 20,
-                            child: ListView.separated(
-                              itemCount: colorsList.length,
-                              physics: const NeverScrollableScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) => Container(
-                                width: 20,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: colorsList[index],
-                                  borderRadius: BorderRadius.circular(10),
-
-                                ),
-                              ),
-                              separatorBuilder:
-                                  (BuildContext context, int index) =>
-                                      const SizedBox(
-                                width: 15,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('Buy Now'),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
