@@ -12,6 +12,8 @@ class ProductCard02 extends StatefulWidget {
 }
 
 class _ProductCard02State extends State<ProductCard02> {
+  bool _isTaped = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +24,11 @@ class _ProductCard02State extends State<ProductCard02> {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Positioned(
-                top: -30,
-                right: -40,
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 700),
+                curve: Curves.easeInOut,
+                top: _isTaped ? 30 : -30,
+                right: _isTaped ? 40 : -40,
                 child: Container(
                   width: 220,
                   height: 228,
@@ -82,7 +86,11 @@ class _ProductCard02State extends State<ProductCard02> {
                           width: double.infinity,
                           height: 60,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                _isTaped = !_isTaped;
+                              });
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFFF4400),
                                 foregroundColor: Colors.white,
