@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/utils/assets.dart';
 
 class NikeProductCard extends StatefulWidget {
   static String tag = "/NikeProductCardRoute";
@@ -113,9 +114,7 @@ class _NikeProductCardState extends State<NikeProductCard>
                             padding: const EdgeInsets.only(right: 30),
                             child: Transform.rotate(
                                 angle: -pi / 8,
-                                child: Image.asset(
-                                  'assets/images/nikle_shoes.webp',
-                                )),
+                                child: 'nikle_shoes'.toWebp()),
                           ),
                           const SizedBox(
                             height: 80,

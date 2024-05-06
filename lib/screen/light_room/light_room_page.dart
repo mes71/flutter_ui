@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_ui/utils/assets.dart';
 
 class LightRoomPage extends StatefulWidget {
@@ -83,22 +82,18 @@ class _LightRoomPageState extends State<LightRoomPage>
           ),
         ),
         Positioned(
-          top: 0,
-          right: 37,
-          child: Image.asset(
-            'lamp'.toPng(),
-            width: 199,
-            height: 327,
-          ),
-        ),
+            top: 0,
+            right: 37,
+            child: 'lamp'.toPng(
+              width: 199,
+              height: 327,
+            )),
         Positioned(
           top: 285,
           right: 95,
           child: FadeTransition(
             opacity: _fadeAnimation,
-            child: SvgPicture.asset(
-              'light'.toSvg(),
-            ),
+            child: 'light'.toSvg(),
           ),
         ),
       ],
@@ -134,10 +129,10 @@ class _LightRoomPageState extends State<LightRoomPage>
               trackColor: lightIsOn
                   ? const MaterialStatePropertyAll<Color>(Color(0xFFA9BDB2))
                   : const MaterialStatePropertyAll<Color>(
-                  Color.fromRGBO(193, 193, 193, 0.5)),
+                      Color.fromRGBO(193, 193, 193, 0.5)),
               activeColor: const Color(0xFF335B42),
-              activeThumbImage: AssetImage('switch_on'.toPng()),
-              inactiveThumbImage: AssetImage('switch_off'.toPng()),
+              activeThumbImage: 'switch_on'.toPngImageProvider(),
+              inactiveThumbImage: 'switch_off'.toPngImageProvider(),
               inactiveThumbColor: Colors.white,
               inactiveTrackColor: Colors.white,
             ),
@@ -159,7 +154,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                 ),
                 Row(
                   children: [
-                    SvgPicture.asset('light1'.toSvg()),
+                    'light1'.toSvg(),
                     Expanded(
                       child: Slider(
                         value: intensity,
@@ -172,7 +167,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                         inactiveColor: const Color(0xFF335B42),
                       ),
                     ),
-                    SvgPicture.asset('light2'.toSvg()),
+                    'light2'.toSvg(),
                   ],
                 ),
               ],
