@@ -54,18 +54,18 @@ class _LightRoomPageState extends State<LightRoomPage>
                         width: 300,
                         height: 300,
                         decoration: lightIsOn?ShapeDecoration(
-                            shape: const OvalBorder(),
-                            shadows: [
-                              BoxShadow(
+                          shape: const OvalBorder(),
+                          shadows: [
+                            BoxShadow(
                                 color: Color.fromRGBO(245, 245, 221, intensity),
-                                blurRadius: 150,
-                                spreadRadius: 70,
+                                blurRadius: 151,
+                                spreadRadius: 50,
                                 blurStyle: BlurStyle.normal,
                                 offset: const Offset(10,-10)
 
 
-                              )
-                            ],
+                            )
+                          ],
 
                         ):ShapeDecoration(
                           shape: const OvalBorder(),
@@ -86,7 +86,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                     top: 0,
                     right: 37,
                     child: Image.asset(
-                      Assets.imagesLamp,
+                      'lamp'.toPng(),
                       width: 199,
                       height: 327,
                     ),
@@ -97,8 +97,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                     child: FadeTransition(
                       opacity: _fadeAnimation,
                       child: SvgPicture.asset(
-                        Assets.iconsLight,
-
+                        'light'.toSvg(),
                       ),
                     ),
                   ),
@@ -134,14 +133,14 @@ class _LightRoomPageState extends State<LightRoomPage>
                         },
                         trackColor: lightIsOn
                             ? const MaterialStatePropertyAll<Color>(
-                                Color(0xFFA9BDB2))
+                            Color(0xFFA9BDB2))
                             : const MaterialStatePropertyAll<Color>(
-                                Color.fromRGBO(193, 193, 193, 0.5)),
+                            Color.fromRGBO(193, 193, 193, 0.5)),
                         activeColor: const Color(0xFF335B42),
                         activeThumbImage:
-                            const AssetImage(Assets.imagesSwitchOn),
+                        AssetImage('switch_on'.toPng()),
                         inactiveThumbImage:
-                            const AssetImage(Assets.imagesSwitchOff),
+                        AssetImage('switch_off'.toPng()),
                         inactiveThumbColor: Colors.white,
                         inactiveTrackColor: Colors.white,
                       ),
@@ -168,7 +167,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                           ),
                           Row(
                             children: [
-                              SvgPicture.asset(Assets.iconsLight1),
+                              SvgPicture.asset('light1'.toSvg()),
                               Expanded(
                                 child: Slider(
                                   value: intensity,
@@ -181,7 +180,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                                   inactiveColor: const Color(0xFF335B42),
                                 ),
                               ),
-                              SvgPicture.asset(Assets.iconsLight2),
+                              SvgPicture.asset('light2'.toSvg()),
                             ],
                           ),
                         ],

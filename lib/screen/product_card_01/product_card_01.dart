@@ -62,7 +62,7 @@ class _ProductCard01State extends State<ProductCard01>
 
     _slideAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: Offset(-1.5, 0),
+      end: const Offset(-1.5, 0),
     ).animate(
       CurvedAnimation(
         parent: _controller,
@@ -117,7 +117,7 @@ class _ProductCard01State extends State<ProductCard01>
                       child: Align(
                         alignment: Alignment(_slideAnimation.value.dx, 0),
                         child: Image.asset(
-                          Assets.imagesPorganic01,
+                          'porganic01'.toPng(),
                           // Replace this with your image URL
                           width: 210,
                           height: 210,
