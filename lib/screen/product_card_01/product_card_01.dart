@@ -138,7 +138,7 @@ class _ProductCard01State extends State<ProductCard01>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                     Text(
                       "PORGANIC",
                       style: TextStyle(
                           fontSize: 20,
