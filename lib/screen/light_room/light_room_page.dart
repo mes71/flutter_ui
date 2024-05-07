@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_ui/utils/assets.dart';
 
 class LightRoomPage extends StatefulWidget {
-  const LightRoomPage({super.key});
+  const LightRoomPage({Key? key}) : super(key: key);
 
   static const String tag = "/LightRoomPageRoute";
 
@@ -13,27 +12,26 @@ class LightRoomPage extends StatefulWidget {
 
 class _LightRoomPageState extends State<LightRoomPage>
     with TickerProviderStateMixin {
+  // State variables
   bool lightIsOn = false;
   double intensity = 0.5;
 
+  // Animation controller for fade animation
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 700),
     vsync: this,
   );
+
+  // Curved animation for fading in/out
   late final Animation<double> _fadeAnimation = CurvedAnimation(
     parent: _controller,
     curve: Curves.easeIn,
   );
 
   @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
-
-    if (lightIsOn) {
-      _controller.forward();
-    } else {
-      _controller.reverse();
-    }
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,151 +43,11 @@ class _LightRoomPageState extends State<LightRoomPage>
           children: [
             Expanded(
               flex: 3,
-              child: Stack(
-                children: [
-                  Positioned(
-                      top: 165,
-                      right: 10,
-                      child: Container(
-                        width: 300,
-                        height: 300,
-                        decoration: lightIsOn?ShapeDecoration(
-                            shape: const OvalBorder(),
-                            shadows: [
-                              BoxShadow(
-                                color: Color.fromRGBO(245, 245, 221, intensity),
-                                blurRadius: 150,
-                                spreadRadius: 70,
-                                blurStyle: BlurStyle.normal,
-                                offset: const Offset(10,-10)
-
-
-                              )
-                            ],
-
-                        ):ShapeDecoration(
-                          shape: const OvalBorder(),
-                          shadows: [
-                            BoxShadow(
-                                color:Colors.black.withOpacity(0.7),
-                                blurRadius: 150,
-                                spreadRadius: 80,
-                                blurStyle: BlurStyle.normal,
-                                offset: const Offset(10,-10)
-
-
-                            )
-                          ],
-                        ),
-                      )),
-                  Positioned(
-                    top: 0,
-                    right: 37,
-                    child: Image.asset(
-                      Assets.imagesLamp,
-                      width: 199,
-                      height: 327,
-                    ),
-                  ),
-                  Positioned(
-                    top: 285,
-                    right: 95,
-                    child: FadeTransition(
-                      opacity: _fadeAnimation,
-                      child: SvgPicture.asset(
-                        Assets.iconsLight,
-
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
+              child: _buildLightSection(),
             ),
             Expanded(
               flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Island Kitchen Bar \nLED Pendant Ceiling Light',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w300,
-                        height: 0,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Switch(
-                        value: lightIsOn,
-                        onChanged: (value) {
-                          setState(() {
-                            lightIsOn = !lightIsOn;
-                          });
-                        },
-                        trackColor: lightIsOn
-                            ? const MaterialStatePropertyAll<Color>(
-                                Color(0xFFA9BDB2))
-                            : const MaterialStatePropertyAll<Color>(
-                                Color.fromRGBO(193, 193, 193, 0.5)),
-                        activeColor: const Color(0xFF335B42),
-                        activeThumbImage:
-                            const AssetImage(Assets.imagesSwitchOn),
-                        inactiveThumbImage:
-                            const AssetImage(Assets.imagesSwitchOff),
-                        inactiveThumbColor: Colors.white,
-                        inactiveTrackColor: Colors.white,
-                      ),
-                    ),
-                    const Row(),
-                    FadeTransition(
-                      opacity: _fadeAnimation,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 100),
-                            child: Text(
-                              'Light Intensity',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w300,
-                                height: 0,
-                              ),
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(Assets.iconsLight1),
-                              Expanded(
-                                child: Slider(
-                                  value: intensity,
-                                  activeColor: Colors.white,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      intensity = value;
-                                    });
-                                  },
-                                  inactiveColor: const Color(0xFF335B42),
-                                ),
-                              ),
-                              SvgPicture.asset(Assets.iconsLight2),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              child: _buildControlSection(),
             ),
           ],
         ),
@@ -197,9 +55,126 @@ class _LightRoomPageState extends State<LightRoomPage>
     );
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  // Widget for the light display section
+  Widget _buildLightSection() {
+    return Stack(
+      children: [
+        Positioned(
+          top: 165,
+          right: 10,
+          child: Container(
+            width: 300,
+            height: 300,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: lightIsOn
+                      ? Color.fromRGBO(245, 245, 221, intensity)
+                      : Colors.black.withOpacity(0.7),
+                  blurRadius: lightIsOn ? 151 : 150,
+                  spreadRadius: lightIsOn ? 50 : 80,
+                  blurStyle: BlurStyle.normal,
+                  offset: const Offset(10, -10),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+            top: 0,
+            right: 37,
+            child: 'lamp'.toPng(
+              width: 199,
+              height: 327,
+            )),
+        Positioned(
+          top: 285,
+          right: 95,
+          child: FadeTransition(
+            opacity: _fadeAnimation,
+            child: 'light'.toSvg(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Widget for the control section
+  Widget _buildControlSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Island Kitchen Bar \nLED Pendant Ceiling Light',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w300,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Switch(
+              value: lightIsOn,
+              onChanged: (value) {
+                setState(() {
+                  lightIsOn = value;
+                  lightIsOn ? _controller.forward() : _controller.reverse();
+                });
+              },
+              trackColor: lightIsOn
+                  ? const MaterialStatePropertyAll<Color>(Color(0xFFA9BDB2))
+                  : const MaterialStatePropertyAll<Color>(
+                      Color.fromRGBO(193, 193, 193, 0.5)),
+              activeColor: const Color(0xFF335B42),
+              activeThumbImage: 'switch_on'.toPngImageProvider(),
+              inactiveThumbImage: 'switch_off'.toPngImageProvider(),
+              inactiveThumbColor: Colors.white,
+              inactiveTrackColor: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 20),
+          FadeTransition(
+            opacity: _fadeAnimation,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Light Intensity',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                Row(
+                  children: [
+                    'light1'.toSvg(),
+                    Expanded(
+                      child: Slider(
+                        value: intensity,
+                        activeColor: Colors.white,
+                        onChanged: (value) {
+                          setState(() {
+                            intensity = value;
+                          });
+                        },
+                        inactiveColor: const Color(0xFF335B42),
+                      ),
+                    ),
+                    'light2'.toSvg(),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

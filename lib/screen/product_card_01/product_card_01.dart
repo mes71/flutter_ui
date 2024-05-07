@@ -62,7 +62,7 @@ class _ProductCard01State extends State<ProductCard01>
 
     _slideAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: Offset(-1.5, 0),
+      end: const Offset(-1.5, 0),
     ).animate(
       CurvedAnimation(
         parent: _controller,
@@ -91,7 +91,7 @@ class _ProductCard01State extends State<ProductCard01>
             left: 80,
             child: Center(
               child: Visibility(
-                visible: _horizontalAnimation.value !=0,
+                visible: _horizontalAnimation.value != 0,
                 child: CustomPaint(
                   painter: LinePainter(
                       _horizontalAnimation.value, _verticalAnimation.value),
@@ -115,14 +115,11 @@ class _ProductCard01State extends State<ProductCard01>
                     return Transform.scale(
                       scale: _scaleAnimation.value,
                       child: Align(
-                        alignment: Alignment(_slideAnimation.value.dx, 0),
-                        child: Image.asset(
-                          Assets.imagesPorganic01,
-                          // Replace this with your image URL
-                          width: 210,
-                          height: 210,
-                        ),
-                      ),
+                          alignment: Alignment(_slideAnimation.value.dx, 0),
+                          child: 'porganic01'.toPng(
+                            width: 210,
+                            height: 210,
+                          )),
                     );
                   },
                 ),
