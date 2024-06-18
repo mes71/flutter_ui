@@ -45,6 +45,7 @@ class _AirPodShopPageState extends State<AirPodShopPage> {
     );
   }
 
+  // when run this page from application show this page
   Widget phoneNotSupport() => Container(
         color: Colors.grey.shade50,
         child: Column(
