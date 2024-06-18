@@ -114,7 +114,7 @@ class _NikeProductCardState extends State<NikeProductCard>
                             padding: const EdgeInsets.only(right: 30),
                             child: Transform.rotate(
                                 angle: -pi / 8,
-                                child: 'nikle_shoes'.toWebp()),
+                                child:MyAssets.imagesNikeShoes.toWebp()),
                           ),
                           const SizedBox(
                             height: 80,

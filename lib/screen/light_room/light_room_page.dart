@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ui/utils/assets.dart';
 
 class LightRoomPage extends StatefulWidget {
-  const LightRoomPage({Key? key}) : super(key: key);
+  const LightRoomPage({super.key});
 
   static const String tag = "/LightRoomPageRoute";
 
@@ -84,7 +84,7 @@ class _LightRoomPageState extends State<LightRoomPage>
         Positioned(
             top: 0,
             right: 37,
-            child: 'lamp'.toPng(
+            child: MyAssets.imagesLamp.toPng(
               width: 199,
               height: 327,
             )),
@@ -93,7 +93,7 @@ class _LightRoomPageState extends State<LightRoomPage>
           right: 95,
           child: FadeTransition(
             opacity: _fadeAnimation,
-            child: 'light'.toSvg(),
+            child: MyAssets.iconsLight.toSvg(),
           ),
         ),
       ],
@@ -131,8 +131,8 @@ class _LightRoomPageState extends State<LightRoomPage>
                   : const MaterialStatePropertyAll<Color>(
                       Color.fromRGBO(193, 193, 193, 0.5)),
               activeColor: const Color(0xFF335B42),
-              activeThumbImage: 'switch_on'.toPngImageProvider(),
-              inactiveThumbImage: 'switch_off'.toPngImageProvider(),
+              activeThumbImage: MyAssets.imagesSwitchOn.toPngImageProvider(),
+              inactiveThumbImage: MyAssets.imagesSwitchOff.toPngImageProvider(),
               inactiveThumbColor: Colors.white,
               inactiveTrackColor: Colors.white,
             ),
@@ -154,7 +154,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                 ),
                 Row(
                   children: [
-                    'light1'.toSvg(),
+                    MyAssets.iconsLight1.toSvg(),
                     Expanded(
                       child: Slider(
                         value: intensity,
@@ -167,7 +167,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                         inactiveColor: const Color(0xFF335B42),
                       ),
                     ),
-                    'light2'.toSvg(),
+                    MyAssets.iconsLight2.toSvg(),
                   ],
                 ),
               ],

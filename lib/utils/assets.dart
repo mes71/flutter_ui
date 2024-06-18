@@ -2,7 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-extension AssetsHandler on String {
+enum MyAssets {
+  iconsLight,
+  iconsLight1,
+  iconsLight2,
+  imagesLamp,
+  imagesNikeShoes,
+  imagesPorganic,
+  imagesPorganic01,
+  imagesSwitchOff,
+  imagesSwitchOn,
+}
+
+extension AssetsHandler on MyAssets {
   // Generates an `SvgPicture` widget for the SVG asset with optional height and width
   SvgPicture toSvg({double? height, double? width}) =>
       SvgPicture.asset('assets/icons/$this.svg', width: width, height: height);
