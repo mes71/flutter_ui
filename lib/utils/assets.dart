@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class Assets {
   Assets._();
-
   static const String iconsLight = 'assets/icons/light.svg';
   static const String iconsLight1 = 'assets/icons/light1.svg';
   static const String iconsLight2 = 'assets/icons/light2.svg';
@@ -15,6 +14,7 @@ class Assets {
   static const String imagesAirPodWhite = 'assets/images/air_pod_white.png';
   static const String imagesLamp = 'assets/images/lamp.png';
   static const String imagesNikleShoes = 'assets/images/nikle_shoes.webp';
+  static const String imagesNoPhone = 'assets/images/no_phone.png';
   static const String imagesPorganic = 'assets/images/porganic.png';
   static const String imagesPorganic01 = 'assets/images/porganic01.png';
   static const String imagesSwitchOff = 'assets/images/switch_off.png';
