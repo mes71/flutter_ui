@@ -116,7 +116,7 @@ class _ProductCard01State extends State<ProductCard01>
                       scale: _scaleAnimation.value,
                       child: Align(
                           alignment: Alignment(_slideAnimation.value.dx, 0),
-                          child:MyAssets.imagesPorganic01.toPng(
+                          child: Assets.imagesPorganic01.toPng(
                             width: 210,
                             height: 210,
                           )),

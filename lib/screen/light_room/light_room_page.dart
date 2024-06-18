@@ -84,7 +84,7 @@ class _LightRoomPageState extends State<LightRoomPage>
         Positioned(
             top: 0,
             right: 37,
-            child: MyAssets.imagesLamp.toPng(
+            child: Assets.imagesLamp.toPng(
               width: 199,
               height: 327,
             )),
@@ -93,7 +93,7 @@ class _LightRoomPageState extends State<LightRoomPage>
           right: 95,
           child: FadeTransition(
             opacity: _fadeAnimation,
-            child: MyAssets.iconsLight.toSvg(),
+            child: Assets.iconsLight.toSvg(),
           ),
         ),
       ],
@@ -131,8 +131,8 @@ class _LightRoomPageState extends State<LightRoomPage>
                   : const MaterialStatePropertyAll<Color>(
                       Color.fromRGBO(193, 193, 193, 0.5)),
               activeColor: const Color(0xFF335B42),
-              activeThumbImage: MyAssets.imagesSwitchOn.toPngImageProvider(),
-              inactiveThumbImage: MyAssets.imagesSwitchOff.toPngImageProvider(),
+              activeThumbImage: Assets.imagesSwitchOn.toPngImageProvider(),
+              inactiveThumbImage: Assets.imagesSwitchOff.toPngImageProvider(),
               inactiveThumbColor: Colors.white,
               inactiveTrackColor: Colors.white,
             ),
@@ -154,7 +154,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                 ),
                 Row(
                   children: [
-                    MyAssets.iconsLight1.toSvg(),
+                    Assets.iconsLight1.toSvg(),
                     Expanded(
                       child: Slider(
                         value: intensity,
@@ -167,7 +167,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                         inactiveColor: const Color(0xFF335B42),
                       ),
                     ),
-                    MyAssets.iconsLight2.toSvg(),
+                    Assets.iconsLight2.toSvg(),
                   ],
                 ),
               ],
