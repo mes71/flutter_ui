@@ -17,34 +17,43 @@ class _ProductCard02State extends State<ProductCard02> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(47),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                AnimatedPositioned(
-                  duration: const Duration(milliseconds: 700),
-                  curve: Curves.easeInOut,
-                  top: _isTaped ? 30 : -30,
-                  right: _isTaped ? 40 : -40,
-                  child: Container(
-                    width: 220,
-                    height: 228,
-                    decoration: const ShapeDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment(0.00, -1.00),
-                        end: Alignment(0, 1),
-                        colors: [Color(0xFFC48AFF), Color(0xFF6322A3)],
-                      ),
-                      shape: OvalBorder(),
-                    ),
-                  ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 700),
+              curve: Curves.easeInOut,
+              top: _isTaped ? 130 : 0,
+              right: _isTaped ? 40 : 0,
+              child: Container(
+                width: 220,
+                height: 228,
+                decoration: const ShapeDecoration(
+                  color: Color(0xFFC48AFF),
+                  shape: OvalBorder(),
                 ),
-                BackdropFilter(
+              ),
+            ),
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 700),
+              curve: Curves.easeInOut,
+              bottom: _isTaped ? 130 : 50,
+              left: _isTaped ? 40 : 20,
+              child: Container(
+                width: 220,
+                height: 228,
+                decoration: const ShapeDecoration(
+                  color: Color(0xFF5178E0),
+                  shape: OvalBorder(),
+                ),
+              ),
+            ),
+            Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(47),
+                child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 10.0),
                   child: Container(
                     width: 428,
@@ -52,14 +61,14 @@ class _ProductCard02State extends State<ProductCard02> {
                     decoration: ShapeDecoration(
                       color: const Color(0x7FD9D9D9),
                       shape: RoundedRectangleBorder(
-                        side:
-                            const BorderSide(width: 4, color: Color(0x659D6DDA)),
+                        side: const BorderSide(
+                            width: 4, color: Colors.transparent),
                         borderRadius: BorderRadius.circular(47),
                       ),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 55, vertical: 130),
+                          horizontal: 55, vertical: 80),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -107,10 +116,10 @@ class _ProductCard02State extends State<ProductCard02> {
                       ),
                     ),
                   ),
-                )
-              ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
