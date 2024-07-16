@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TestPage extends StatefulWidget {
+  static const String tag = "/TestPage";
+
   const TestPage({super.key});
 
   @override

@@ -15,7 +15,7 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
-lib/screen/test_page/
+lib/screen/test_page/test_page.dart
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
