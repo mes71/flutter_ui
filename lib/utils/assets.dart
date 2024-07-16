@@ -8,6 +8,7 @@ class Assets {
   static const String iconsLight1 = 'assets/icons/light1.svg';
   static const String iconsLight2 = 'assets/icons/light2.svg';
   static const String imagesAirPodBlack = 'assets/images/air_pod_black.png';
+  static const String imagesAppleLogo = 'assets/images/apple_logo.png';
   static const String imagesAirPodBlue = 'assets/images/air_pod_blue.png';
   static const String imagesAirPodGreen = 'assets/images/air_pod_green.png';
   static const String imagesAirPodRed = 'assets/images/air_pod_red.png';
