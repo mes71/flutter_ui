@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ui/utils/utils.dart';
 
 import 'app_bar.dart';
+import 'color_circle_widget.dart';
+import 'product_details.dart';
 
 class AirPodShopPage extends StatefulWidget {
   const AirPodShopPage({super.key});
@@ -16,55 +18,42 @@ class AirPodShopPage extends StatefulWidget {
 class _AirPodShopPageState extends State<AirPodShopPage>
     with SingleTickerProviderStateMixin {
   bool isWeb = false;
-  int selectedAirPod = 1;
+  int currentAirPod = 0;
+  int oldAirPod = 0;
+  List<String> airPodList = [
+    Assets.imagesAirPodBlack,
+    Assets.imagesAirPodGreen,
+    Assets.imagesAirPodRed,
+    Assets.imagesAirPodWhite,
+    Assets.imagesAirPodBlue,
+  ];
+
   late AnimationController _controller;
-  late Animation<double> _rotationAnimation;
-  late Animation<double> _translationAnimation;
-  late Animation<double> _fadeAnimation;
-  final TransformationController _transformationController = TransformationController();
+  late Animation<double> _rotateAnimation;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _opacityAnimation;
+  late Animation<Offset> _positionAnimation;
+
   @override
   void initState() {
     super.initState();
     checkPlatform();
     _controller = AnimationController(
-      duration: const Duration(seconds: 10),
+      duration: const Duration(milliseconds: 900),
       vsync: this,
-    )
-      ..forward()
-      ..repeat(reverse: true);
+    );
 
-    _rotationAnimation = Tween<double>(
-      begin: 0,
-      end: -3.141592653589793, // 180 degrees in radians counterclockwise
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-    _translationAnimation = Tween<double>(
-      begin: 0,
-      end: 1000, // Move 200 pixels down
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-    _fadeAnimation = Tween<double>(
-      begin: 1,
-      end: 0,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-
-    _controller.addListener(() {
-      final scaleValue = 1.0 - 0.5 * _rotationAnimation.value;
-      final rotationValue = _rotationAnimation.value * 2 * 3.141592653589793;
-      _transformationController.value = Matrix4.identity()
-        ..scale(scaleValue)
-        ..rotateZ(rotationValue);
-    });
+    _rotateAnimation = Tween<double>(begin: 0, end: -3).animate(_controller)
+      ..addListener(
+        () {
+          setState(() {});
+        },
+      );
+    _scaleAnimation = Tween<double>(begin: 1, end: 0.1).animate(_controller);
+    _opacityAnimation = Tween<double>(begin: 1, end: 0).animate(_controller);
+    _positionAnimation =
+        Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0.2, 1))
+            .animate(_controller);
   }
 
   @override
@@ -83,7 +72,6 @@ class _AirPodShopPageState extends State<AirPodShopPage>
 
   @override
   Widget build(BuildContext context) {
-    isWeb.sLog;
     return Scaffold(
       body: isWeb ? webPage() : phoneNotSupport(),
     );
@@ -143,7 +131,7 @@ class _AirPodShopPageState extends State<AirPodShopPage>
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  /*             Positioned(
+                  Positioned(
                       left: 50,
                       top: 30,
                       child: Column(
@@ -172,12 +160,8 @@ class _AirPodShopPageState extends State<AirPodShopPage>
                           ),
                           const SizedBox(height: 56),
                           ColorCirclesWidget(
-                            selectedIndex: selectedAirPod,
-                            onTap: (index) {
-                              setState(() {
-                                selectedAirPod = index;
-                              });
-                            },
+                            selectedIndex: currentAirPod,
+                            onTap: onTapCircle,
                           ),
                           const SizedBox(height: 50),
                           productDetails(
@@ -192,29 +176,64 @@ class _AirPodShopPageState extends State<AirPodShopPage>
                               title: 'Connectivity\nTechnology:',
                               description: 'Wireless, Wired'),
                         ],
-                      )),*/
+                      )),
                   Positioned(
-                      right: -100,
-                      child: AnimatedBuilder(
-                        animation: _controller,
-                        builder: (context, child) {
-                          return Transform.translate(
-                            offset: Offset(0, _translationAnimation.value),
-                            child: Transform(
-                              transform:  _transformationController.value,
-                              child: Opacity(
-                                opacity: _fadeAnimation.value,
-                                child: Assets.imagesAirPodBlack
+                    top: 0,
+                    right: 0,
+                    child: Opacity(
+                      opacity: _controller.value,
+                      child: Container(
+                        child: airPodList[currentAirPod]
+                            .toPng(width: 900, height: 900),
+                      ),
+                    ),
+                  ),
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      _controller.value.eLog;
+                      return Positioned(
+                        top: _positionAnimation.value.dy *
+                            MediaQuery.of(context).size.height,
+                        right: _positionAnimation.value.dx *
+                            MediaQuery.of(context).size.width,
+                        child: Transform.rotate(
+                          angle: _rotateAnimation.value,
+                          child: Transform.scale(
+                            scale: _scaleAnimation.value,
+                            child: Opacity(
+                              opacity: _opacityAnimation.value,
+                              child: Container(
+                                child: airPodList[oldAirPod]
                                     .toPng(width: 900, height: 900),
                               ),
                             ),
-                          );
-                        },
-                      )),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
           ],
         ),
       ));
+
+  void onTapCircle(int index) {
+    setState(() {
+      oldAirPod = currentAirPod;
+      currentAirPod = index;
+    });
+    if (_controller.isCompleted) {
+      _controller.reset();
+    }
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }

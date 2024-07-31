@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ui/screen/air_pod_shop/air_pod_shop.dart';
 import 'package:flutter_ui/screen/light_room/light_room_page.dart';
 import 'package:flutter_ui/screen/screen.dart';
+import 'package:flutter_ui/screen/test_page/test_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         LightRoomPage.tag: (context) => const LightRoomPage(),
         ProductCard02.tag: (context) => const ProductCard02(),
         AirPodShopPage.tag: (context) => const AirPodShopPage(),
+        TestPage.tag :(context) => const TestPage()
       },
     );
   }
