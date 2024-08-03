@@ -17,6 +17,8 @@ class AirPodShopPage extends StatefulWidget {
 
 class _AirPodShopPageState extends State<AirPodShopPage>
     with SingleTickerProviderStateMixin {
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+
   bool isWeb = false;
   int currentAirPod = 0;
   int oldAirPod = 0;
@@ -27,7 +29,13 @@ class _AirPodShopPageState extends State<AirPodShopPage>
     Assets.imagesAirPodWhite,
     Assets.imagesAirPodBlue,
   ];
-
+  List<String> itemBottomList = [
+    Assets.imagesAirPodBlack,
+    Assets.imagesAirPodGreen,
+    Assets.imagesAirPodRed,
+    Assets.imagesAirPodWhite,
+    Assets.imagesAirPodBlue,
+  ];
   late AnimationController _controller;
   late Animation<double> _rotateAnimation;
   late Animation<double> _scaleAnimation;
@@ -175,6 +183,18 @@ class _AirPodShopPageState extends State<AirPodShopPage>
                           productDetails(
                               title: 'Connectivity\nTechnology:',
                               description: 'Wireless, Wired'),
+                          SizedBox(
+                            width: 580,
+                            height: 120,
+                            child: ListView.builder(
+                              itemCount: airPodList.length,
+                              scrollDirection: Axis.horizontal,
+                              primary: false,
+                              padding: const EdgeInsets.only(right: 20),
+                              itemBuilder: (context, index) => airPodList[index]
+                                  .toPng(width: 120, height: 120),
+                            ),
+                          )
                         ],
                       )),
                   Positioned(
@@ -191,7 +211,6 @@ class _AirPodShopPageState extends State<AirPodShopPage>
                   AnimatedBuilder(
                     animation: _controller,
                     builder: (context, child) {
-                      _controller.value.eLog;
                       return Positioned(
                         top: _positionAnimation.value.dy *
                             MediaQuery.of(context).size.height,
