@@ -21,6 +21,10 @@
                 </a>
             </td>
         </tr>
+    </table>
+</div>
+<div>
+<table>
                 <tr>
                 <td style="text-align: center">
                <a href="https://github.com/mes71/flutter_ui/tree/master/lib/screen/air_pod_shop">
@@ -28,8 +32,7 @@
                 </a>
     </td>
         </tr>
-    </table>
-
+</table>
 </div>
 
 
