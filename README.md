@@ -24,7 +24,7 @@
                 <tr>
                 <td style="text-align: center">
                <a href="https://github.com/mes71/flutter_ui/tree/master/lib/screen/air_pod_shop">
-                    <img src="https://github.com/user-attachments/assets/205c0436-b98b-46c4-b36e-e9283623c0b1" height="450" width="250" alt="lib/screen/light_room"/>
+                    <img src="https://github.com/user-attachments/assets/205c0436-b98b-46c4-b36e-e9283623c0b1" height="450" width="600" alt="lib/screen/light_room"/>
                 </a>
     </td>
         </tr>
