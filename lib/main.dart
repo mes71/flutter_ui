@@ -23,14 +23,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade400),
         useMaterial3: true,
       ),
-      initialRoute: AirPodShopPage.tag,
+      initialRoute: NotFoundPage.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
         ProductCard01.tag: (context) => const ProductCard01(),
         LightRoomPage.tag: (context) => const LightRoomPage(),
         ProductCard02.tag: (context) => const ProductCard02(),
         AirPodShopPage.tag: (context) => const AirPodShopPage(),
-        TestPage.tag :(context) => const TestPage()
+        NotFoundPage.tag: (context) => const NotFoundPage(),
+        TestPage.tag: (context) => const TestPage()
       },
     );
   }
