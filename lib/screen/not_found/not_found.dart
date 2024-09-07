@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/screen/not_found/nosie_painter.dart';
+import 'package:flutter_ui/utils/utils.dart';
 
 class NotFoundPage extends StatefulWidget {
   const NotFoundPage({super.key});
@@ -27,20 +28,27 @@ class _NotFoundPageState extends State<NotFoundPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return CustomPaint(
-              painter: NoisePainter(
-                noisePositions: _noisePositions,
-                animationProgress: _controller.value,
-              ),
-              size: Size.infinite,
-            );
-          },
-        ),
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            color: Colors.white,
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return CustomPaint(
+                  painter: NoisePainter(
+                    noisePositions: _noisePositions,
+                    animationProgress: _controller.value,
+                  ),
+                  size: Size.infinite,
+                );
+              },
+            ),
+          ),
+          Image.asset(Assets.imagesNotFound,width: 250,height: 500,),
+
+        ],
       ),
     );
   }
