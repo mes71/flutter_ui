@@ -46,8 +46,11 @@ class _NotFoundPageState extends State<NotFoundPage>
               },
             ),
           ),
-          Image.asset(Assets.imagesNotFound,width: 250,height: 500,),
-
+          Image.asset(
+            Assets.imagesNotFound2,
+            width: 300,
+            height: 300,
+          ),
         ],
       ),
     );

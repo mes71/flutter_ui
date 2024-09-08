@@ -20,7 +20,8 @@ class Assets {
   static const String imagesPorganic01 = 'assets/images/porganic01.png';
   static const String imagesSwitchOff = 'assets/images/switch_off.png';
   static const String imagesSwitchOn = 'assets/images/switch_on.png';
-  static const String imagesNotFound = 'assets/images/shand_drawn_404_error.png';
+  static const String imagesNotFound = 'assets/images/hand_drawn_404_error.png';
+  static const String imagesNotFound2 = 'assets/images/not_found.png';
 }
 
 extension AssetsHandler on String {
