@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/screen/air_pod_shop/air_pod_shop.dart';
-import 'package:flutter_ui/screen/light_room/light_room_page.dart';
 import 'package:flutter_ui/screen/screen.dart';
 import 'package:flutter_ui/screen/test_page/test_page.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade400),
         useMaterial3: true,
       ),
-      initialRoute: NotFoundPage.tag,
+      initialRoute: GlassMorphismLoginPage.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
         ProductCard01.tag: (context) => const ProductCard01(),
@@ -31,6 +29,7 @@ class MyApp extends StatelessWidget {
         ProductCard02.tag: (context) => const ProductCard02(),
         AirPodShopPage.tag: (context) => const AirPodShopPage(),
         NotFoundPage.tag: (context) => const NotFoundPage(),
+        GlassMorphismLoginPage.tag: (context) => const GlassMorphismLoginPage(),
         TestPage.tag: (context) => const TestPage()
       },
     );

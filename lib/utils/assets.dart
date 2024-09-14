@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class Assets {
   Assets._();
+
   static const String iconsLight = 'assets/icons/light.svg';
   static const String iconsLight1 = 'assets/icons/light1.svg';
   static const String iconsLight2 = 'assets/icons/light2.svg';
@@ -22,6 +23,8 @@ class Assets {
   static const String imagesSwitchOn = 'assets/images/switch_on.png';
   static const String imagesNotFound = 'assets/images/hand_drawn_404_error.png';
   static const String imagesNotFound2 = 'assets/images/not_found.png';
+  static const String imagesCityDigitalArt =
+      'assets/images/city_digital_art.jpg';
 }
 
 extension AssetsHandler on String {
@@ -35,6 +38,9 @@ extension AssetsHandler on String {
 
   // Generates an `Image` widget for the PNG image asset with optional height and width
   Image toPng({double? height, double? width}) =>
+      Image.asset(this, width: width, height: height);
+
+  Image toJpg({double? height, double? width}) =>
       Image.asset(this, width: width, height: height);
 
   // Returns an `ImageProvider` for the PNG image asset without specifying height and width
