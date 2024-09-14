@@ -65,7 +65,7 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(color: Colors.black),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -85,7 +85,7 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(color: Colors.black),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -115,16 +115,16 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                         side: const BorderSide(color: Colors.transparent),
                       ),
                       const Text('Remember me',
-                          style: TextStyle(color: Colors.white)),
+                          style: TextStyle(color: Colors.black)),
                       const Spacer(),
                       TextButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
+                          foregroundColor: Colors.black,
                         ),
                         child: const Text('Reset password',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: 16,
                             )),
                       ),
