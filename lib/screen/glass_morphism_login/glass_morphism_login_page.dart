@@ -144,8 +144,18 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12), //
-                          // Change radius here
+                          borderRadius: BorderRadius.circular(12),
+                          side: BorderSide(color: Colors.white), // White border
+                        ), // Transparent background
+                      ).copyWith(
+                        backgroundColor:
+                            WidgetStateProperty.resolveWith<Color?>(
+                          (Set<WidgetState> states) {
+                            if (states.contains(WidgetState.hovered)) {
+                              return Colors.transparent;
+                            }
+                            return Colors.white;
+                          },
                         ),
                       ),
                       child: const Text('Login',
