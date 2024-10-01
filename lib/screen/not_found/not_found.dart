@@ -47,7 +47,7 @@ class _NotFoundPageState extends State<NotFoundPage>
             ),
           ),
           Image.asset(
-            Assets.imagesNotFound2,
+            Assets.imagesNotFound,
             width: 300,
             height: 300,
           ),

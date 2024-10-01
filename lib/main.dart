@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade400),
         useMaterial3: true,
       ),
-      initialRoute: GlassMorphismLoginPage.tag,
+      initialRoute: TestPage.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
         ProductCard01.tag: (context) => const ProductCard01(),

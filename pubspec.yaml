@@ -22,4 +22,5 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/images/not_found.png
+    - assets/shaders/
 
