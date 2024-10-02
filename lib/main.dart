@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/screen/screen.dart';
-import 'package:flutter_ui/screen/test_page/test_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'screen/test_page/test_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade400),
         useMaterial3: true,
       ),
-      initialRoute: TestPage.tag,
+      initialRoute: RealEstatePage.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
         ProductCard01.tag: (context) => const ProductCard01(),
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         AirPodShopPage.tag: (context) => const AirPodShopPage(),
         NotFoundPage.tag: (context) => const NotFoundPage(),
         GlassMorphismLoginPage.tag: (context) => const GlassMorphismLoginPage(),
+        RealEstatePage.tag: (context) => const RealEstatePage(),
         TestPage.tag: (context) => const TestPage()
       },
     );
