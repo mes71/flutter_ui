@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/gen/assets.gen.dart';
 import 'package:flutter_ui/screen/product_card_01/liner_painter.dart';
-import 'package:flutter_ui/utils/assets.dart';
 import 'package:flutter_ui/utils/color_convertor.dart';
 
 class ProductCard01 extends StatefulWidget {
@@ -116,7 +116,7 @@ class _ProductCard01State extends State<ProductCard01>
                       scale: _scaleAnimation.value,
                       child: Align(
                           alignment: Alignment(_slideAnimation.value.dx, 0),
-                          child: Assets.imagesPorganic01.toPng(
+                          child: Assets.images.porganic01.image(
                             width: 210,
                             height: 210,
                           )),

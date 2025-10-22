@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/utils/assets.dart';
+import 'package:flutter_ui/gen/assets.gen.dart';
 
 class NikeProductCard extends StatefulWidget {
   static String tag = "/NikeProductCardRoute";
@@ -68,7 +68,7 @@ class _NikeProductCardState extends State<NikeProductCard>
                     top: -50,
                     right: -50,
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         setState(() {
                           if (_controller.status == AnimationStatus.completed) {
                             _controller.reverse();
@@ -94,7 +94,7 @@ class _NikeProductCardState extends State<NikeProductCard>
                           }),
                     )),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       if (_controller.status == AnimationStatus.completed) {
                         _controller.reverse();
@@ -114,7 +114,7 @@ class _NikeProductCardState extends State<NikeProductCard>
                             padding: const EdgeInsets.only(right: 30),
                             child: Transform.rotate(
                                 angle: -pi / 8,
-                                child:Assets.imagesNikleShoes.toWebp()),
+                                child: Assets.images.nikleShoes.image()),
                           ),
                           const SizedBox(
                             height: 80,
@@ -199,7 +199,6 @@ class _NikeProductCardState extends State<NikeProductCard>
                                   decoration: BoxDecoration(
                                     color: colorsList[index],
                                     borderRadius: BorderRadius.circular(10),
-
                                   ),
                                 ),
                                 separatorBuilder:

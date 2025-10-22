@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/gen/assets.gen.dart';
 import 'package:flutter_ui/screen/not_found/nosie_painter.dart';
 import 'package:flutter_ui/utils/utils.dart';
 
@@ -46,8 +47,7 @@ class _NotFoundPageState extends State<NotFoundPage>
               },
             ),
           ),
-          Image.asset(
-            Assets.imagesNotFound,
+          Assets.images.notFound.image(
             width: 300,
             height: 300,
           ),

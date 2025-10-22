@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/gen/assets.gen.dart';
 import 'package:flutter_ui/utils/utils.dart';
 
 SizedBox appBar() {
@@ -6,7 +7,7 @@ SizedBox appBar() {
       height: 80,
       child: Row(
         children: [
-          Assets.imagesAppleLogo.toPng(),
+          Assets.images.appleLogo.image(width: 30, height: 30),
           const Text(
             'AirPods Max',
             style: TextStyle(
@@ -18,48 +19,48 @@ SizedBox appBar() {
           ),
           Expanded(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Overview',
-                      style: TextStyle(
-                        color: Color(0xFF323232),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        height: 0,
-                      ),
-                    ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Overview',
+                  style: TextStyle(
+                    color: Color(0xFF323232),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    height: 0,
                   ),
-                  const SizedBox(width: 16.0),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Tech Specs',
-                      style: TextStyle(
-                        color: Color(0xFF323232),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        height: 0,
-                      ),
-                    ),
+                ),
+              ),
+              const SizedBox(width: 16.0),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Tech Specs',
+                  style: TextStyle(
+                    color: Color(0xFF323232),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    height: 0,
                   ),
-                  const SizedBox(width: 16.0),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Compare',
-                      style: TextStyle(
-                        color: Color(0xFF323232),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        height: 0,
-                      ),
-                    ),
+                ),
+              ),
+              const SizedBox(width: 16.0),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Compare',
+                  style: TextStyle(
+                    color: Color(0xFF323232),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    height: 0,
                   ),
-                ],
-              ))
+                ),
+              ),
+            ],
+          ))
         ],
       ));
 }

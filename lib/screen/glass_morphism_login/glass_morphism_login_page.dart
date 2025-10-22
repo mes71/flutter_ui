@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/utils/assets.dart';
+import 'package:flutter_ui/gen/assets.gen.dart';
 import 'package:flutter_ui/utils/context_utils.dart';
 
 class GlassMorphismLoginPage extends StatefulWidget {
@@ -20,9 +20,9 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(Assets.imagesCityDigitalArt),
+          image: AssetImage(Assets.images.cityDigitalArt.path),
           fit: BoxFit.cover,
         ),
       ),
@@ -110,7 +110,7 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                             _isRememberMe = value!;
                           });
                         },
-                        fillColor: WidgetStateProperty.all(Colors.white),
+                        fillColor: MaterialStateProperty.all(Colors.white),
                         checkColor: Colors.black,
                         side: const BorderSide(color: Colors.transparent),
                       ),
@@ -149,9 +149,9 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                         ), // Transparent background
                       ).copyWith(
                         backgroundColor:
-                            WidgetStateProperty.resolveWith<Color?>(
-                          (Set<WidgetState> states) {
-                            if (states.contains(WidgetState.hovered)) {
+                            MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.hovered)) {
                               return Colors.transparent;
                             }
                             return Colors.white;

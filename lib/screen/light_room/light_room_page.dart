@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/utils/assets.dart';
+import 'package:flutter_ui/gen/assets.gen.dart';
 
 class LightRoomPage extends StatefulWidget {
   const LightRoomPage({super.key});
@@ -84,7 +84,7 @@ class _LightRoomPageState extends State<LightRoomPage>
         Positioned(
             top: 0,
             right: 37,
-            child: Assets.imagesLamp.toPng(
+            child: Assets.images.lamp.image(
               width: 199,
               height: 327,
             )),
@@ -92,9 +92,7 @@ class _LightRoomPageState extends State<LightRoomPage>
           top: 285,
           right: 95,
           child: FadeTransition(
-            opacity: _fadeAnimation,
-            child: Assets.iconsLight.toSvg(),
-          ),
+              opacity: _fadeAnimation, child: Assets.icons.light.svg()),
         ),
       ],
     );
@@ -130,9 +128,9 @@ class _LightRoomPageState extends State<LightRoomPage>
                   ? const MaterialStatePropertyAll<Color>(Color(0xFFA9BDB2))
                   : const MaterialStatePropertyAll<Color>(
                       Color.fromRGBO(193, 193, 193, 0.5)),
-              activeColor: const Color(0xFF335B42),
-              activeThumbImage: Assets.imagesSwitchOn.toPngImageProvider(),
-              inactiveThumbImage: Assets.imagesSwitchOff.toPngImageProvider(),
+              activeThumbColor: const Color(0xFF335B42),
+              activeThumbImage: Assets.images.switchOn.provider(),
+              inactiveThumbImage: Assets.images.switchOff.provider(),
               inactiveThumbColor: Colors.white,
               inactiveTrackColor: Colors.white,
             ),
@@ -154,7 +152,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                 ),
                 Row(
                   children: [
-                    Assets.iconsLight1.toSvg(),
+                    Assets.icons.light1.svg(),
                     Expanded(
                       child: Slider(
                         value: intensity,
@@ -167,7 +165,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                         inactiveColor: const Color(0xFF335B42),
                       ),
                     ),
-                    Assets.iconsLight2.toSvg(),
+                    Assets.icons.light2.svg(),
                   ],
                 ),
               ],
