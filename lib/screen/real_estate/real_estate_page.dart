@@ -21,7 +21,7 @@ class _RealEstatePageState extends State<RealEstatePage> {
           end: Alignment(0, 1),
           colors: [
             Color(0xFFEAEBED),
-            Colors.white.withOpacity(0.9),
+            Colors.white.withValues(alpha: 0.9),
             Color(0x93EAEBED)
           ],
         ),

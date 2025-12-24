@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/gen/assets.gen.dart';
 import 'package:flutter_ui/screen/not_found/nosie_painter.dart';
-import 'package:flutter_ui/utils/utils.dart';
 
 class NotFoundPage extends StatefulWidget {
   const NotFoundPage({super.key});

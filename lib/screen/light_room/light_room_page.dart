@@ -71,7 +71,7 @@ class _LightRoomPageState extends State<LightRoomPage>
                 BoxShadow(
                   color: lightIsOn
                       ? Color.fromRGBO(245, 245, 221, intensity)
-                      : Colors.black.withOpacity(0.7),
+                      : Colors.black.withValues(alpha: 0.7),
                   blurRadius: lightIsOn ? 151 : 150,
                   spreadRadius: lightIsOn ? 50 : 80,
                   blurStyle: BlurStyle.normal,
@@ -125,8 +125,8 @@ class _LightRoomPageState extends State<LightRoomPage>
                 });
               },
               trackColor: lightIsOn
-                  ? const MaterialStatePropertyAll<Color>(Color(0xFFA9BDB2))
-                  : const MaterialStatePropertyAll<Color>(
+                  ? const WidgetStatePropertyAll<Color>(Color(0xFFA9BDB2))
+                  : const WidgetStatePropertyAll<Color>(
                       Color.fromRGBO(193, 193, 193, 0.5)),
               activeThumbColor: const Color(0xFF335B42),
               activeThumbImage: Assets.images.switchOn.provider(),

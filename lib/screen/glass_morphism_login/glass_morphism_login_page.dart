@@ -40,7 +40,7 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   width: 1.5,
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                 ),
               ),
               child: Column(
@@ -110,7 +110,7 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                             _isRememberMe = value!;
                           });
                         },
-                        fillColor: MaterialStateProperty.all(Colors.white),
+                        fillColor: WidgetStateProperty.all(Colors.white),
                         checkColor: Colors.black,
                         side: const BorderSide(color: Colors.transparent),
                       ),
@@ -149,9 +149,9 @@ class _GlassMorphismLoginPageState extends State<GlassMorphismLoginPage> {
                         ), // Transparent background
                       ).copyWith(
                         backgroundColor:
-                            MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.hovered)) {
+                            WidgetStateProperty.resolveWith<Color?>(
+                          (Set<WidgetState> states) {
+                            if (states.contains(WidgetState.hovered)) {
                               return Colors.transparent;
                             }
                             return Colors.white;

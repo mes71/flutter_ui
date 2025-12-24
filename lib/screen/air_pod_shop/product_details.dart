@@ -4,7 +4,7 @@ Widget productDetails({
   required String title,
   required String description,
 }) {
-  return Container(
+  return SizedBox(
     width: 500,
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),
