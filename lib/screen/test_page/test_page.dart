@@ -1,6 +1,5 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/utils/logger.dart';
 
 class TestPage extends StatefulWidget {
   static const String tag = "/TestPage";
@@ -13,91 +12,105 @@ class TestPage extends StatefulWidget {
 
 class _TestPageState extends State<TestPage>
     with SingleTickerProviderStateMixin {
-  late ui.FragmentProgram _fragmentProgram;
-  late ui.FragmentShader _shader;
-  late AnimationController _controller;
-  Offset _mousePosition = Offset.zero;
-  double _scale = 0.2;
-  double _blueRatio = 0.5;
-  double _redness = 0.25;
+  var dx = 0;
+  var dy = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Test Page"),
+        ),
+        body: Stack(
+          alignment: AlignmentGeometry.center,
+          children: [
+            AnimatedPositioned.fromRect(
+                rect: Rect.fromLTWH(
+                  dx.toDouble(),
+                  dy.toDouble(),
+                  250,
+                  100,
+                ),
+                duration: Duration(milliseconds: 5),
+                child: GestureDetector(
+                    onPanUpdate: (details) {
+                      setState(() {
+                        dx += details.delta.dx.toInt();
+                        dy += details.delta.dy.toInt();
+                      });
+                    },
+                    child: Container(
+                      width: 250,
+                      height: 100,
+                      color: Colors.deepOrange,
+                    )))
+          ],
+        ));
+  }
+}
+
+class SwipeableCards extends StatefulWidget {
+  const SwipeableCards({super.key});
+
+  @override
+  State<SwipeableCards> createState() => _SwipeableCardsState();
+}
+
+class _SwipeableCardsState extends State<SwipeableCards> {
+  List<int> cardOrder = [0, 1, 2];
+
+  List<LinearGradient> color = [
+    const LinearGradient(
+      colors: [Color(0xffFF512F), Color(0xffDD2476)],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    const LinearGradient(
+      colors: [
+        Color(0xff1488CC),
+        Color(0xff2B32B2),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    const LinearGradient(
+      colors: [Color(0xffad5389), Color(0xff3c1053)],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+  ];
+
+  void changeCardOrder(int sCard, int index) {
+    setState(() {
+      LinearGradient materialAccentColor = color[index];
+      cardOrder.remove(sCard);
+      color.remove(color[index]);
+      color.insert(0, materialAccentColor);
+      cardOrder.insert(0, sCard);
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    )..repeat();
-    _loadShader();
-  }
-
-  Future<void> _loadShader() async {
-    _fragmentProgram =
-        await ui.FragmentProgram.fromAsset('assets/shaders/frag.glsl');
-    _shader = _fragmentProgram.fragmentShader();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _shader.dispose();
-    super.dispose();
+    cardOrder = cardOrder.reversed.toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onPanUpdate: (details) {
-          setState(() {
-            _mousePosition = details.localPosition;
-          });
-        },
-        child: CustomPaint(
-          painter: EyePatternPainter(_shader, _controller, _mousePosition,
-              _scale, _blueRatio, _redness),
-          size: Size.infinite,
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
+      appBar: AppBar(),
+      body: Center(
+        child: Stack(
           children: [
-            Expanded(
-              child: Slider(
-                value: _scale,
-                onChanged: (value) {
-                  setState(() {
-                    _scale = value;
-                  });
-                },
-                min: 0.05,
-                max: 0.6,
-              ),
-            ),
-            Expanded(
-              child: Slider(
-                value: _blueRatio,
-                onChanged: (value) {
-                  setState(() {
-                    _blueRatio = value;
-                  });
-                },
-                min: 0,
-                max: 1,
-              ),
-            ),
-            Expanded(
-              child: Slider(
-                value: _redness,
-                onChanged: (value) {
-                  setState(() {
-                    _redness = value;
-                  });
-                },
-                min: 0,
-                max: 0.5,
-              ),
-            ),
+            for (int i = 0; i < cardOrder.length; i++)
+              SCard(
+                color: color[i],
+                index: i,
+                key: ValueKey(cardOrder[i]),
+                value: cardOrder[i],
+                onDragged: () => changeCardOrder(cardOrder[i], i),
+              )
           ],
         ),
       ),
@@ -105,54 +118,100 @@ class _TestPageState extends State<TestPage>
   }
 }
 
-class EyePatternPainter extends CustomPainter {
-  final ui.FragmentShader _shader;
-  final AnimationController _controller;
-  final Offset _mousePosition;
-  final double _scale;
-  final double _blueRatio;
-  final double _redness;
-
-  EyePatternPainter(
-    this._shader,
-    this._controller,
-    this._mousePosition,
-    this._scale,
-    this._blueRatio,
-    this._redness,
-  ) : super(repaint: _controller);
+class SCard extends StatefulWidget {
+  final int index;
+  final int value;
+  final Function onDragged;
+  final LinearGradient color;
+  const SCard(
+      {super.key,
+      required this.index,
+      required this.onDragged,
+      required this.value,
+      required this.color});
 
   @override
-  void paint(Canvas canvas, Size size) async {
-    _shader.setFloat(0, _controller.value);
-    _shader.setFloat(1, size.width / size.height);
-    _shader.setFloat(2, _mousePosition.dx / size.width);
-    _shader.setFloat(3, 1 - _mousePosition.dy / size.height);
-    _shader.setFloat(4, _scale);
-    _shader.setFloat(5, _blueRatio);
-    _shader.setFloat(6, _redness);
+  State<SCard> createState() => _SCardState();
+}
 
-    ui.PictureRecorder recorder = ui.PictureRecorder();
-    Canvas shaderCanvas =
-        Canvas(recorder, Rect.fromLTWH(0, 0, size.width, size.height));
+class _SCardState extends State<SCard> with TickerProviderStateMixin {
+  Offset _position = const Offset(0, 0);
+  double height = 200;
+  double width = 300;
 
-    Paint paint = Paint()..shader = _shader;
-    shaderCanvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
+  Curve _myCurve = Curves.linear;
+  Duration _duration = const Duration(milliseconds: 0);
 
-    ui.Picture picture = recorder.endRecording();
-    ui.Image image =
-        await picture.toImage(size.width.toInt(), size.height.toInt());
-
-    canvas.drawImage(image, Offset.zero, Paint());
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return oldDelegate is! EyePatternPainter ||
-        oldDelegate._controller != _controller ||
-        oldDelegate._mousePosition != _mousePosition ||
-        oldDelegate._scale != _scale ||
-        oldDelegate._blueRatio != _blueRatio ||
-        oldDelegate._redness != _redness;
+  Widget build(BuildContext context) {
+    return AnimatedPositioned(
+      left: ((MediaQuery.of(context).size.width / 2) - (width / 2)) +
+          _position.dx,
+      top: ((MediaQuery.of(context).size.height / 2) -
+              (height / 2) +
+              (widget.index * 20)) +
+          _position.dy,
+      duration: _duration,
+      curve: _myCurve,
+      child: GestureDetector(
+        onPanUpdate: (details) {
+          if (widget.index == 2) {
+            _myCurve = Curves.linear;
+            _duration = const Duration(milliseconds: 0);
+            if (width >= 100 || height >= 100) {
+              width -= 4;
+              height -= 1;
+            }
+
+            _position += details.delta;
+            setState(() {});
+          }
+        },
+        onPanEnd: (details) {
+          if (widget.index == 2) {
+            _myCurve = Curves.easeIn;
+            _duration = const Duration(milliseconds: 300);
+            setState(() {
+              if (_position.dx <= -(width / 2) || _position.dx >= (width / 2)) {
+                // If so, move the card to the back (0th index)
+                widget.onDragged();
+
+                _position = Offset.zero;
+              } else {
+                _position = Offset.zero;
+              }
+              width = 300;
+              height = 200;
+            });
+          }
+        },
+        child: AnimatedContainer(
+          width: width,
+          height: height,
+          duration: const Duration(milliseconds: 200),
+          child: Container(
+            decoration: BoxDecoration(
+                gradient: widget.color,
+                borderRadius: BorderRadius.circular(20)),
+            child: Center(child: Text("Item ${widget.value}")),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _animateCardBack() {
+    // _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    // _animationController.dispose();
+    super.dispose();
   }
 }

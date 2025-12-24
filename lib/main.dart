@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade400),
         useMaterial3: true,
       ),
-      initialRoute: RealEstatePage.tag,
+      initialRoute: TestPage.tag,
       routes: {
         NikeProductCard.tag: (context) => const NikeProductCard(),
         ProductCard01.tag: (context) => const ProductCard01(),
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         NotFoundPage.tag: (context) => const NotFoundPage(),
         GlassMorphismLoginPage.tag: (context) => const GlassMorphismLoginPage(),
         RealEstatePage.tag: (context) => const RealEstatePage(),
-        TestPage.tag: (context) => const TestPage()
+        TestPage.tag: (context) => const SwipeableCards()
       },
     );
   }
