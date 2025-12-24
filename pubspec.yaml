@@ -1,6 +1,6 @@
 name: flutter_ui
 description: "A Flutter project for awesome UI."
-version: 1.0.0+1
+version: 1.2.0+3
 
 environment:
   sdk: '>=3.2.5 <4.0.0'
@@ -8,8 +8,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  google_fonts: ^6.3.2
-  flutter_svg: ^2.2.1
+  google_fonts: ^6.3.3
+  flutter_svg: ^2.2.3
   flutter_gen: ^5.12.0
 
 dev_dependencies:
@@ -17,7 +17,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   flutter_gen_runner: ^5.12.0
-  build_runner: ^2.10.0
+  build_runner: ^2.10.4
 
 flutter:
   uses-material-design: true

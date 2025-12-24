@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/utils/utils.dart';
-
+import 'package:flutter_ui/gen/assets.gen.dart';
 import 'app_bar.dart';
 import 'color_circle_widget.dart';
 import 'product_details.dart';
@@ -17,24 +16,22 @@ class AirPodShopPage extends StatefulWidget {
 
 class _AirPodShopPageState extends State<AirPodShopPage>
     with SingleTickerProviderStateMixin {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-
   bool isWeb = false;
   int currentAirPod = 0;
   int oldAirPod = 0;
-  List<String> airPodList = [
-    Assets.imagesAirPodBlack,
-    Assets.imagesAirPodGreen,
-    Assets.imagesAirPodRed,
-    Assets.imagesAirPodWhite,
-    Assets.imagesAirPodBlue,
+  var airPodList = [
+    Assets.images.airPodBlack,
+    Assets.images.airPodGreen,
+    Assets.images.airPodRed,
+    Assets.images.airPodWhite,
+    Assets.images.airPodBlue,
   ];
-  List<String> itemBottomList = [
-    Assets.imagesAirPodBlack,
-    Assets.imagesAirPodGreen,
-    Assets.imagesAirPodRed,
-    Assets.imagesAirPodWhite,
-    Assets.imagesAirPodBlue,
+  var itemBottomList = [
+    Assets.images.airPodBlack,
+    Assets.images.airPodGreen,
+    Assets.images.airPodRed,
+    Assets.images.airPodWhite,
+    Assets.images.airPodBlue,
   ];
   late AnimationController _controller;
   late Animation<double> _rotateAnimation;
@@ -92,7 +89,7 @@ class _AirPodShopPageState extends State<AirPodShopPage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Assets.imagesNoPhone.toPng(),
+            Assets.images.noPhone.image(),
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
@@ -192,7 +189,7 @@ class _AirPodShopPageState extends State<AirPodShopPage>
                               primary: false,
                               padding: const EdgeInsets.only(right: 20),
                               itemBuilder: (context, index) => airPodList[index]
-                                  .toPng(width: 120, height: 120),
+                                  .image(width: 120, height: 120),
                             ),
                           )
                         ],
@@ -204,7 +201,7 @@ class _AirPodShopPageState extends State<AirPodShopPage>
                       opacity: _controller.value,
                       child: Container(
                         child: airPodList[currentAirPod]
-                            .toPng(width: 900, height: 900),
+                            .image(width: 900, height: 900),
                       ),
                     ),
                   ),
@@ -224,7 +221,7 @@ class _AirPodShopPageState extends State<AirPodShopPage>
                               opacity: _opacityAnimation.value,
                               child: Container(
                                 child: airPodList[oldAirPod]
-                                    .toPng(width: 900, height: 900),
+                                    .image(width: 900, height: 900),
                               ),
                             ),
                           ),
